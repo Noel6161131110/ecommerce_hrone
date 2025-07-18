@@ -1,4 +1,5 @@
-
+from fastapi.responses import JSONResponse
+from fastapi import HTTPException, status
 
 class ProductsController:
     
@@ -9,7 +10,10 @@ class ProductsController:
         self,
     ):
 
-        return {"message": "Product created successfully."}
+        return JSONResponse(
+            content={"id": "1234567890"},
+            status_code=status.HTTP_201_CREATED
+        )
 
     async def ListProducts(
         self,
