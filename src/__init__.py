@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
-from src.database.db import initDB
+from src.database.db import initDBClient, closeDBClient
 from src.app.routes import router as Router
 from dotenv import load_dotenv
 import os, sys, uvicorn, asyncio
@@ -16,9 +16,11 @@ IS_PRODUCTION = os.getenv("ENV_MODE") == "PRODUCTION"
 
 @asynccontextmanager
 async def lifespan(app : FastAPI):
-    await initDB()
+    await initDBClient(app)
 
     yield
+
+    await closeDBClient(app)
 
 
 app = FastAPI(

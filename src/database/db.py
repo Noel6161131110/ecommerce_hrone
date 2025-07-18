@@ -1,6 +1,7 @@
 from pymongo import AsyncMongoClient
 from dotenv import load_dotenv
 import os, asyncio
+from fastapi import FastAPI
 
 load_dotenv()
 
@@ -8,19 +9,20 @@ MONGODB_URI = os.getenv("MONGODB_URI")
 
 client = AsyncMongoClient(MONGODB_URI)
 
-async def initDB():
+async def initDBClient(app: FastAPI):
     try:
+        app.mongoDbClient = AsyncMongoClient(MONGODB_URI)
+        
+        app.mongoDb = app.mongoDbClient.get_database("ecommerce_hrone")
 
-        await client.admin.command("ping")
         print("Connected successfully")
 
-        await client.close()
     except Exception as e:
-        raise Exception(
-            "The following error occurred: ", e)
+        raise Exception("The following error occurred: ", e)
 
 
-async def getSession():
-    database = client['ecommerce_hrone']
+
+async def closeDBClient(app: FastAPI):
+    await app.mongoDbClient.close()
     
-    return database
+    print("Database connection closed successfully")
