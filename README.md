@@ -18,10 +18,10 @@
 
 ## APIs
 
-- **Create Product** — Create a product using name, price, and sizes.
-- **List Products** — Retrieve a list of products with optional filters for name and size. Supports pagination using limit and offset for fetching the next page.
-- **Create Order** — Create an order by providing userId and a list of items, each containing a productId and quantity. (Note: Product existence is not validated during order creation.)
-- **List of Orders** — Retrieve all orders, including product details such as name and id. Each order includes a calculated total price, rounded to one decimal place only when there is a fractional part.
+- **Create Product [POST]** — Create a product using name, price, and sizes.
+- **List Products [GET]** — Retrieve a list of products with optional filters for name and size. Supports pagination using limit and offset for fetching the next page.
+- **Create Order [POST]** — Create an order by providing userId and a list of items, each containing a productId and quantity. (Note: Product existence is not validated during order creation.)
+- **List of Orders [GET]** — Retrieve all orders, including product details such as name and id. Each order includes a calculated total price, rounded to one decimal place only when there is a fractional part.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -31,7 +31,7 @@
 ---
 
 
-## 🚀 Getting Started
+## Getting Started
 
 Follow the steps below to set up and run the project locally.
 
