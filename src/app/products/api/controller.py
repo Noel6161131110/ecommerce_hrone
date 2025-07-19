@@ -91,7 +91,7 @@ class ProductsController:
                     data = [ProductResponse(**p) for p in products],
                     page = PaginationMeta(
                         next=offset + limit,
-                        imit=len(products),
+                        limit=len(products),
                         previous=max(offset - limit, 0)
                     )
                 )),

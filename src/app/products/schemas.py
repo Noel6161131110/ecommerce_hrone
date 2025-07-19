@@ -10,7 +10,6 @@ class ProductResponse(BaseModel):
     @field_serializer("price")
     def serialize_price(self, price: Decimal) -> float:
         return float(f"{price:.1f}")
-
 class PaginationMeta(BaseModel):
     next: int
     limit: int
