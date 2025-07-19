@@ -1,5 +1,6 @@
 from src.app.products.api.controller import *
 from fastapi import APIRouter
+from .schemas import PaginatedResponse
 
 router = APIRouter()
 
@@ -10,7 +11,8 @@ routes = [
         "path": "",
         "endpoint": productsController.ListProducts,
         "method": "GET",
-        "name": "List Products"
+        "name": "List Products",
+        "response_model": PaginatedResponse
     },
     {
         "path": "",
@@ -25,5 +27,6 @@ for route in routes:
         path=route["path"],
         endpoint=route["endpoint"],
         methods=[route["method"]],
-        name=route["name"]
+        name=route["name"],
+        response_model=route.get("response_model")
     )
